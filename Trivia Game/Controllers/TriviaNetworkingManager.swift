@@ -10,7 +10,7 @@ import Foundation
 class TriviaNetworkingManager {
     // Function to fetch trivia questions
     func fetchTriviaQuestions(amount: Int, category: Int?, difficulty: String, type: String, completion: @escaping (Result<[TriviaQuestion], Error>) -> Void) {
-        // 1. Construct the URL with query parameters
+        // Construct the URL with query parameters
         var components = URLComponents(string: "https://opentdb.com/api.php")
         var queryItems = [URLQueryItem(name: "amount", value: "\(amount)"),
                           URLQueryItem(name: "type", value: type)]
@@ -30,10 +30,10 @@ class TriviaNetworkingManager {
             return
         }
         
-        // 2. Create the URL request
+        // Create the URL request
         let request = URLRequest(url: url)
         
-        // 3. Make the API call
+        // Make the API call
         URLSession.shared.dataTask(with: request) { data, response, error in
             // Handle errors
             if let error = error {

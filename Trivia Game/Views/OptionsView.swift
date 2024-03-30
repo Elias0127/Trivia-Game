@@ -95,7 +95,6 @@ struct OptionsView: View {
         .navigationBarTitle("Trivia Options")
     }
 
-    // Add an instance of the networking manager
     let networkingManager = TriviaNetworkingManager()
 
     let categoryMapping: [String: Int?] = [
@@ -167,7 +166,6 @@ struct OptionsView: View {
                       self.showTrivia = true
                   case .failure(let error):
                       print(error.localizedDescription)
-                      // TODO: Handle the error, perhaps show an alert to the user
                   }
               }
           }

@@ -12,6 +12,7 @@ class GameManager: ObservableObject {
     @Published var currentQuestionIndex = 0
     @Published var score = 0
     @Published var gameEnded = false
+    @Published var selectedAnswer: String?
 
     func loadQuestions(_ questions: [TriviaQuestion]) {
         self.questions = questions
@@ -21,22 +22,18 @@ class GameManager: ObservableObject {
     }
 
     func answerQuestion(with answer: String) {
-        if isLastQuestion() {
-            gameEnded = true
-            return
-        }
-        
-        let currentQuestion = questions[currentQuestionIndex]
-        if answer == currentQuestion.correct_answer {
-            score += 1
-        }
-        currentQuestionIndex += 1
-        
-        if isLastQuestion() {
-            gameEnded = true
-        }
-    }
-
+         let currentQuestion = questions[currentQuestionIndex]
+         if answer == currentQuestion.correct_answer {
+             score += 1
+         }
+         
+         currentQuestionIndex += 1
+         selectedAnswer = nil
+         
+         if isLastQuestion() {
+             gameEnded = true
+         }
+     }
     func isLastQuestion() -> Bool {
         return currentQuestionIndex >= questions.count
     }
